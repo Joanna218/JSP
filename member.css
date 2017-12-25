@@ -1,0 +1,45 @@
+.table_member {
+  border: 1px solid;
+  width: 1000px;
+  margin: 20px;
+}
+td {
+  border: 1px solid;
+  /* width: 100%; */
+}
+.member_box{
+  /* border: 1px solid; */
+  margin-left: 20px;
+  width:100%;
+  height: auto;
+}
+.box{
+  padding: 40px;
+  border: 1px solid white;
+  display: inline-block;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 20px;
+
+}
+.box:hover a {
+  font-size: 25px;
+  color:#e56590;
+
+}
+.box a{
+  width: 100px;
+  text-align: center;
+  padding: 40px;
+  text-decoration: none;
+  transition-duration: 0.2s;
+  /* margin-top: 50px; */
+  /* transform:translateY(-50%); */
+  /* border: 1px solid; */
+}
+.box1 {
+  /* float: left; */
+}
+.box2 {
+  /* float: right; */
+}
