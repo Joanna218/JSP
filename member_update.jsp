@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="config.jsp" %>
+<%@ page import = "java.io.*" %>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <link rel="stylesheet" href="back_ui.css">
   <link rel="stylesheet" href="member.css">
   <title>Document</title>
@@ -14,6 +16,7 @@
 
 <body>
   <div class='wrapper'>
+    <%-- 最上方行 --%>
     <header class='header'>
       <div class='header-left'>
         <h1>後台</h1>
@@ -21,7 +24,9 @@
       <div class='header-right'> aaa
       </div>
     </header>
+    <%-- 清除浮動 --%>
     <div class='clear_float'></div>
+    <%-- 左邊導覽列 --%>
     <div class='left_sidebar'>
       <ul class='ul_sidebar'>
         <li class='li_sidebar'>
@@ -74,6 +79,7 @@
         </li>
       </ul>
     </div>
+    <%-- 右邊內容 --%>
     <div class='right_content'>
       <ul class='member_box'>
         <%-- 會員一覽 --%>
@@ -88,17 +94,25 @@
 
 
 
-      <%-- <script>
-        function confirmChoice() {
-          if (confirm ("確定要修改嗎?")) {
-　　     　sure();
-          }else{
-            document.write("失敗");
-          }
-        }
-      </script> --%>
+      <script>
+        $(function() {
+          $('.js-btn-update').on('click', function() {
+            if (!confirm ("確定要修改嗎?")) {
+              location.reload(true);
+            }
+          });
+          $('.js-btn-delete').on('click', function() {
+            if (confirm ("確定要刪除嗎?")) {
+              //location.reload(true);
+             document.location.href="http://localhost:8080/repo/member.jsp";
+            }
+          });
+        })
+      </script>
       <%
-        String input_no = request.getParameter("up_no");
+       //抓取更新的欄位，第一次執行為null
+        String input_no = request.getParameter("ori_no");
+        out.print("ori_no:" +input_no);
         String input_id = request.getParameter("up_id");
         String input_pwd = request.getParameter("up_pwd");
         String input_name = request.getParameter("up_name");
@@ -108,32 +122,9 @@
         String input_email = request.getParameter("up_email");
         String input_tel = request.getParameter("up_tel");
         String modify = request.getParameter("submit");
-      %>
-       <%-- <%!
-      public  void sure() {
 
-        if("update".equals(modify)) {
-          //out.print("<script>alert('確定修改嗎?');</script>");
-          sql="UPDATE member SET id= '"+input_id+"',pwd = '"+input_pwd+"' ,name = '"+input_name+"',sex = '"+input_sex+"',birthday = '"+input_birthday+"',address = '"+input_address+"',email = '"+input_email+"',tel = '"+input_tel+"' WHERE No = '"+input_no+"'";
-          int no2 =con.createStatement().executeUpdate(sql); //no2=1
-          if (no2 > 0){
-            out.print("<br>");
-            out.print("&nbsp&nbsp&nbsp&nbsp&nbsp"+"第"+input_no+"筆修改成功!");
-          }
-        }
+        //判斷按鈕為更新或刪除
 
-        }
-      %> --%>
-      <%
-        if("update".equals(modify)) {
-          //out.print("<script>alert('確定修改嗎?');</script>");
-          sql="UPDATE member SET id= '"+input_id+"',pwd = '"+input_pwd+"' ,name = '"+input_name+"',sex = '"+input_sex+"',birthday = '"+input_birthday+"',address = '"+input_address+"',email = '"+input_email+"',tel = '"+input_tel+"' WHERE No = '"+input_no+"'";
-          int no2 =con.createStatement().executeUpdate(sql); //no2=1
-          if (no2 > 0){
-            out.print("<br>");
-            out.print("&nbsp&nbsp&nbsp&nbsp&nbsp"+"第"+input_no+"筆修改成功!");
-          }
-        }
       %>
       <div class='text'></div>
       <table class='table_member'>
@@ -151,13 +142,23 @@
         <td>刪除</td>
        </tr>
       <%
+        //執行sql從資料庫撈出資料跑成表格
         sql = "SELECT * FROM member";
         ResultSet rs = con.createStatement().executeQuery(sql);
-
+        int n =1;
+        //每一筆資料都為一個form，這樣才知道使哪一筆資料按了按鈕
+          if("delete".equals(modify)) {
+            out.print("有近來");
+            sql="DELETE FROM member WHERE num_NO = '"+input_no+"' ";
+				    con.createStatement().execute(sql);
+            //out.print("<script>alert('刪除成功');location.reload();</script>");
+          }
         while(rs.next()) {
           out.print("<tr>");
           out.print("<form action='member_update.jsp' method='post'>");
-          out.print("<td><input type='hidden' name='up_no' value="+rs.getString("NO")+">"+rs.getString("NO")+"</td>");
+          out.print("印n :"+n);
+          out.print("<td><input type='hidden' name='up_no'>"+n+"</td>");
+          out.print("<td style=display:none;> <input type='hidden' name='ori_no' value="+rs.getString("num_NO")+"></td>");
           out.print("<td><input type='text' name='up_id' value="+rs.getString("id")+"></td>");
           out.print("<td><input type='text' name='up_pwd' value="+rs.getString("pwd")+"></td>");
           out.print("<td><input type='text' name='up_name'size='8' value="+rs.getString("name")+"></td>");
@@ -166,10 +167,11 @@
           out.print("<td><input type='text' name='up_address' size='15' value="+rs.getString("address")+"></td>");
           out.print("<td><input type='text' name='up_email'  value="+rs.getString("email")+"></td>");
           out.print("<td><input type='text' name='up_tel' size='10' value="+rs.getString("tel")+"></td>");
-          out.print("<td><input type='submit' name='submit' value='update' onClick=confirmChoice()></td>");
-          out.print("<td><input type='submit' name='submit' value='delete'></td>");
+          out.print("<td><input type='submit' name='submit' value='update' class='js-btn-update'></td>");
+          out.print("<td><input type='submit' name='submit' value='delete' class='js-btn-delete'></td>");
           out.print("</form>");
           out.print("</tr>");
+          n++;
         }
 
       %>
@@ -180,3 +182,25 @@
 </body>
 
 </html>
+
+        <%-- if("update".equals(modify)) {
+          //out.print("<script>alert('確定修改嗎?');</script>");
+          sql="UPDATE member SET id= '"+input_id+"',pwd = '"+input_pwd+"' ,name = '"+input_name+"',sex = '"+input_sex+"',birthday = '"+input_birthday+"',address = '"+input_address+"',email = '"+input_email+"',tel = '"+input_tel+"' WHERE No = '"+input_no+"'";
+          int no2 =con.createStatement().executeUpdate(sql); //no2=1
+          if (no2 > 0){
+            out.print("<br>");
+            out.print("&nbsp&nbsp&nbsp&nbsp&nbsp"+"第"+input_no+"筆修改成功!");
+          }
+        } else {
+          sql="DELETE FROM member WHERE No = '"+input_no+"' ";
+				  con.createStatement().execute(sql);
+          sql="select NO from member" ;
+          ResultSet rs2 = con.createStatement().executeQuery(sql);
+          rs2.last();
+          int total_counter = rs2.getRow();
+          out.print("總共有"+ total_counter+"筆資料");
+          for(int i=1;i<=total_counter;i++) {
+
+          }
+
+        } --%>

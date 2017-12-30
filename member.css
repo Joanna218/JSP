@@ -3,10 +3,12 @@
   width: 1000px;
   margin: 20px;
 }
+
 td {
   border: 1px solid;
   /* width: 100%; */
 }
+
 .member_box{
   /* border: 1px solid; */
   margin-left: 20px;

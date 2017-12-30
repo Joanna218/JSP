@@ -9,10 +9,12 @@
   <link rel="stylesheet" href="back_ui.css">
   <link rel="stylesheet" href="member.css">
   <title>Document</title>
+
 </head>
 
 <body>
   <div class='wrapper'>
+    <%-- 最上方行 --%>
     <header class='header'>
       <div class='header-left'>
         <h1>後台</h1>
@@ -20,7 +22,9 @@
       <div class='header-right'> aaa
       </div>
     </header>
+    <%-- 清除浮動 --%>
     <div class='clear_float'></div>
+    <%-- 左邊導覽列 --%>
     <div class='left_sidebar'>
       <ul class='ul_sidebar'>
         <li class='li_sidebar'>
@@ -73,6 +77,7 @@
         </li>
       </ul>
     </div>
+    <%-- 右邊內容 --%>
     <div class='right_content'>
       <ul class='member_box'>
         <%-- 會員一覽 --%>
@@ -84,6 +89,7 @@
           <a href="member_update.jsp">修改會員</a>
         </li>
       </ul>
+
       <table class='table_member'>
       <tr >
         <td >NO.</td>
@@ -99,8 +105,10 @@
       <%
         sql = "SELECT * FROM member";
 			  ResultSet rs = con.createStatement().executeQuery(sql);
+        int n =1;
         while(rs.next()) {
-          out.print("<tr><td>"+rs.getString("NO")+"</td>");
+          out.print("<td><input type='hidden' name='up_no'>"+n+"</td>");
+          out.print("<td style=display:none;> <input type='hidden' name='ori_no'>"+rs.getString("num_NO")+"</td>");
           out.print("<td>"+rs.getString("id")+"</td>");
           out.print("<td>"+rs.getString("pwd")+"</td>");
           out.print("<td>"+rs.getString("name")+"</td>");
@@ -109,6 +117,7 @@
           out.print("<td>"+rs.getString("address")+"</td>");
           out.print("<td>"+rs.getString("email")+"</td>");
           out.print("<td>"+rs.getString("tel")+"</td></tr>");
+          n++;
         }
       %>
       </table>
