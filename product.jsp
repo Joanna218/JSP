@@ -81,13 +81,17 @@
     <%-- 右邊內容 --%>
     <div class='right_content'>
       <ul class='member_box'>
-        <%-- 會員一覽 --%>
+        <%-- 產品一覽 --%>
         <li class='box box1'>
           <a href="product.jsp">產品一覽</a>
         </li>
-        <%-- 修改會員 --%>
+        <%-- 修改產品 --%>
         <li class='box box2'>
           <a href="product_update.jsp">修改產品</a>
+        </li>
+        <%-- 新增產品 --%>
+        <li class='box box2'>
+          <a href="product_add.jsp">新增產品</a>
         </li>
       </ul>
 
@@ -99,23 +103,19 @@
         <td>價格</td>
         <td>庫存</td>
        </tr>
-       <%
-         String checked="";
-       %>
-
       <%
         sql = "SELECT * FROM product";
         ResultSet rs = con.createStatement().executeQuery(sql);
+        int n =1;
+        String checked="";
         while(rs.next()) {
-          out.println("<tr>");
-          out.println("<form action='product.jsp' method='POST'>");
-          out.print("<td>"+rs.getString("product_no")+"</td>");
-          out.println("<td>"+"<img src ='"+rs.getString("filepath")+"/"+rs.getString("image_path")+"'"+"width ='50'>"+"</td>");
-          out.println("<td>"+rs.getString("product_name")+"</td>");
-          out.println("<td>"+rs.getString("product_price")+"</td>");
-          out.println("<td>"+rs.getString("product_num")+"</td>");
-          out.println("</form>");
-			    out.println("</tr>");
+          out.print("<tr><td><input type='hidden'>"+n+"</td>");
+          out.print("<td style=display:none;> <input type='hidden' name='ori_no'>"+rs.getString("product_no")+"</td>");
+          out.print("<td>"+"<img width='50' src ="+rs.getString("image_path")+"></td>");
+          out.print("<td>"+rs.getString("product_name")+"</td>");
+          out.print("<td>"+rs.getString("product_price")+"</td>");
+          out.print("<td>"+rs.getString("product_num")+"</td></tr>");
+          n++;
         }
       %>
       </table>
