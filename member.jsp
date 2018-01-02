@@ -107,7 +107,7 @@
 			  ResultSet rs = con.createStatement().executeQuery(sql);
         int n =1;
         while(rs.next()) {
-          out.print("<td><input type='hidden' name='up_no'>"+n+"</td>");
+          out.print("<tr><td><input type='hidden'>"+n+"</td>");
           out.print("<td style=display:none;> <input type='hidden' name='ori_no'>"+rs.getString("num_NO")+"</td>");
           out.print("<td>"+rs.getString("id")+"</td>");
           out.print("<td>"+rs.getString("pwd")+"</td>");

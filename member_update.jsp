@@ -103,8 +103,8 @@
           });
           $('.js-btn-delete').on('click', function() {
             if (confirm ("確定要刪除嗎?")) {
-              //location.reload(true);
-             document.location.href="http://localhost:8080/repo/member.jsp";
+              location.reload(true);
+
             }
           });
         })
@@ -122,11 +122,20 @@
         String input_email = request.getParameter("up_email");
         String input_tel = request.getParameter("up_tel");
         String modify = request.getParameter("submit");
-
-        //判斷按鈕為更新或刪除
-
+        //每一筆資料都為一個form，這樣才知道使哪一筆資料按了按鈕
+        if("delete".equals(modify)) {
+          out.print("有近來");
+          sql="DELETE FROM member WHERE num_NO = '"+input_no+"' ";
+				  con.createStatement().execute(sql);
+        }else {
+          sql="UPDATE member SET id= '"+input_id+"',pwd = '"+input_pwd+"' ,name = '"+input_name+"',sex = '"+input_sex+"',birthday = '"+input_birthday+"',address = '"+input_address+"',email = '"+input_email+"',tel = '"+input_tel+"' WHERE num_NO = '"+input_no+"'";
+          int no2 =con.createStatement().executeUpdate(sql); //no2=1
+          if (no2 > 0){
+            out.print("<br>");
+            out.print("&nbsp&nbsp&nbsp&nbsp&nbsp"+"第"+input_no+"筆修改成功!");
+          }
+        }
       %>
-      <div class='text'></div>
       <table class='table_member'>
       <tr >
         <td >NO.</td>
@@ -140,24 +149,16 @@
         <td>電話</td>
         <td>更新</td>
         <td>刪除</td>
-       </tr>
+      </tr>
       <%
         //執行sql從資料庫撈出資料跑成表格
         sql = "SELECT * FROM member";
         ResultSet rs = con.createStatement().executeQuery(sql);
         int n =1;
-        //每一筆資料都為一個form，這樣才知道使哪一筆資料按了按鈕
-          if("delete".equals(modify)) {
-            out.print("有近來");
-            sql="DELETE FROM member WHERE num_NO = '"+input_no+"' ";
-				    con.createStatement().execute(sql);
-            //out.print("<script>alert('刪除成功');location.reload();</script>");
-          }
         while(rs.next()) {
-          out.print("<tr>");
-          out.print("<form action='member_update.jsp' method='post'>");
+          out.print("<tr><form action='member_update.jsp' method='post'>");
           out.print("印n :"+n);
-          out.print("<td><input type='hidden' name='up_no'>"+n+"</td>");
+          out.print("<td><input type='hidden'>"+n+"</td>");
           out.print("<td style=display:none;> <input type='hidden' name='ori_no' value="+rs.getString("num_NO")+"></td>");
           out.print("<td><input type='text' name='up_id' value="+rs.getString("id")+"></td>");
           out.print("<td><input type='text' name='up_pwd' value="+rs.getString("pwd")+"></td>");
@@ -169,11 +170,9 @@
           out.print("<td><input type='text' name='up_tel' size='10' value="+rs.getString("tel")+"></td>");
           out.print("<td><input type='submit' name='submit' value='update' class='js-btn-update'></td>");
           out.print("<td><input type='submit' name='submit' value='delete' class='js-btn-delete'></td>");
-          out.print("</form>");
-          out.print("</tr>");
+          out.print("</form></tr>");
           n++;
         }
-
       %>
       </table>
     </div>
