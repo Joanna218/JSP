@@ -1,0 +1,124 @@
+html {
+    border: none;
+    background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+}
+
+* {
+    /*   border:1px solid; */
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: '微軟正黑體';
+}
+
+.wrapper {
+    /*   opacity: 0.5; */
+    margin: 20px;
+    /*   border: 1px white solid; */
+}
+
+.header {
+    /*   position: fixed; */
+    width: 100%;
+    height: 10vh;
+    /*   background-color: pink; */
+    /*   background-color: rgba(0, 0, 0, 0.20); */
+    /*   border-bottom: 1px solid rgba(255,255,255, 0.2); */
+}
+
+.header-left {
+    width: 15%;
+    height: 10vh;
+    float: left;
+    background-color: white;
+}
+
+.header-right {
+    width: 85%;
+    height: 10vh;
+    float: right;
+    background-color: #f8f9fa;
+}
+
+.left_sidebar {
+    width: 15%;
+    height: 90vh;
+    vertical-align: baselin;
+    /*   position: fixed; fixed不能與float同時使用  */
+    float: left;
+    background-color: white;
+}
+
+.ul_sidebar {
+    padding: 0px;
+    list-style: none;
+}
+
+.li_sidebar {
+    /*   display: flex; */
+    /*   align-items: center; */
+    height: 100px;
+    border: 1px solid #f0f0f0;
+    border-left: 1px solid #e7eaec;
+    transition-duration: 0.2s;
+    /*   border-bottom: 1px solid rgba(255,255,255, 0.1); */
+}
+
+.li_sidebar:hover {
+    background-color: #f8f9fa;
+    border-left: 5px solid #e56590;
+    cursor: pointer;
+}
+
+.li_sidebar:hover a {
+    color: #4a4a4a;
+}
+
+.li_position {
+    width: 100px;
+    height: 100px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    /*   background-color: pink; */
+    text-align: center;
+}
+
+.li_sidebar_pic {
+    width: 50px;
+    height: 50px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.li_sidebar_pic img{
+    
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+
+.li_sidebar a {
+    text-decoration: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    /*   border: none; */
+    color: #dbdbdb;
+    margin-top: 10px;
+}
+
+.right_content {
+    /*   display: inline-block ; */
+    width: 85%;
+    height: 90vh;
+    background-color: #f8f9fa;
+    float: right;
+}
+
+.clear_float {
+    clear: both;
+}

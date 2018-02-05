@@ -1,0 +1,351 @@
+
+.container{
+        margin:auto;
+        position:relative;
+}
+
+input#search{
+        border-radius: 5px;  
+        width: 100px;
+        height: 30px;
+}
+
+.search{
+        margin:auto;
+        padding: 0;
+        text-align:center;
+    }
+
+.search *{vertical-align:middle;}
+
+.login{
+        text-align:right;
+}
+.login > a{
+        text-decoration:none;
+        color:gray;
+}
+.logo{
+        margin:auto;
+        padding: 0;
+        text-align:center;
+}
+.menu{
+        margin:auto;
+        padding: 0;
+        text-align:center;
+}
+.goods {
+        margin: 0;
+        padding: 0;
+        list-style: none; 
+        display:inline-block;
+        text-align: left;
+        width: 101px;
+        line-height: 10px;
+
+}
+
+    ul { /* 取消ul預設的內縮及樣式 */
+        margin: 0;
+        padding: 0;
+        list-style: none;          
+        border-radius: 5px; /*邊界弧度*/
+    }
+
+    ul.drop-down-menu {
+        border: #ccc 2px solid;
+        display: inline-block;
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: 13px;
+
+    }
+
+    ul.drop-down-menu li {
+        position: relative;
+        white-space: nowrap;
+        border-right: #ccc 1px solid;
+    }
+
+    ul.drop-down-menu > li:last-child {
+        border-right: none;
+    }
+
+    ul.drop-down-menu > li {
+        float: left; /* 只有第一層是靠左對齊*/
+    }
+
+     ul.drop-down-menu a {
+        background-color: #fff;
+        color: #333;
+        display: block;
+        padding: 0 30px;
+        text-decoration: none;
+        line-height: 35px;
+
+    }
+    ul.drop-down-menu a:hover { /* 滑鼠滑入按鈕變色*/
+        background-color: #fff;
+        color: #AAAAAA;
+    }
+
+    ul.drop-down-menu li:hover > a { /* 滑鼠移入次選單上層按鈕保持變色*/
+        background-color: #fff;
+        color: #AAAAAA;
+    }
+    ul.drop-down-menu ul {
+
+        border: #ccc 1px solid;
+        position: absolute;
+        z-index: 99;
+        left: -1px;
+        top: 100%;
+        min-width: 100px;
+    }
+
+    ul.drop-down-menu ul li {
+
+        border-bottom: #ccc 1px solid;
+
+    }
+
+    ul.drop-down-menu ul li:last-child {
+        border-bottom: none;
+    }
+
+     ul.drop-down-menu ul { /*隱藏次選單*/
+        visibility: hidden;
+        /*
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        left: 99999px;
+        opacity: 0;
+        -webkit-transition: opacity 0.3s;
+        transition: opacity 0.3s;*/
+    }
+
+    ul.drop-down-menu li:hover > ul { /* 滑鼠滑入展開次選單*/
+        visibility: visible;
+        opacity: 1;
+        -webkit-transition: opacity 0.3s;
+        transition: opacity 0.3s;
+        left: -1px;
+        border-right: 5px;
+    }
+
+    ul.drop-down-menu li:hover > ul ul { /* 滑鼠滑入之後、次選單之後的選單依舊隱藏*/
+        left: 99999px;
+    }
+
+    ul.drop-down-menu ul li:hover > ul { /* 第二層之後的選單展開位置*/
+       left: 90%;
+    }
+.footer_store{
+      position:relative;
+    left:0;
+    bottom: 0;
+    width: 100%;
+    color: gray;
+    text-align: center;
+    line-height:5px;
+    margin-top: 0px;
+}
+
+.footer{
+    position:relative;
+    left:0;
+    bottom: 0;
+    width: 100%;
+    color: gray;
+    text-align: center;
+    line-height:50px;
+    margin-top: 0px;
+}
+
+/*store圖片div*/
+.store_main{
+    margin: auto;
+    margin-top: 100px;
+    margin-left: 8%;
+    padding: 0;
+    position: relative;
+    text-align:center;
+}
+.choose_the_phone{
+    margin: auto;
+    position: absolute;
+    padding-top: 60px;
+    padding-left:170px ;
+}
+/*store頁面選取型號*/
+ .choose_the_phone >li {
+    display:inline-block;
+ }
+
+
+
+/*各商品頁分類*/
+.products-first{
+    position: relative;
+    margin: auto;
+    padding:10px;
+    color:gray;
+    width:350;
+    height:350;
+}
+/*滑鼠滑入出現陰影*/
+.products-first:hover{
+    -moz-box-shadow:4px 4px 12px 4px rgba(20%,20%,40%,0.5);
+-webkit-box-shadow:4px 4px 12px 4px rgba(20%,20%,40%,0.5);
+box-shadow:4px 4px 12px 4px rgba(20%,20%,40%,0.5);
+}
+
+.product{
+    text-decoration:none;
+    width: 300px;
+    margin:auto;
+    padding: 0;
+    text-align:center;
+}
+.products{
+    margin:auto;
+    padding: 0;
+    text-align:center;
+}
+/*商品分類頁名字*/
+.goodsname{
+    text-decoration:none;
+    font-size: 18px;
+    text-align: center;
+    color:#444444;
+    font-weight: bold;
+    font-family: monospace;
+}
+/*特價*/
+.onsale{
+    padding:2px 5px;
+    background-color: red;
+    border-radius: 6px; /*邊界弧度*/
+    font-size: 13px;
+    color: white;
+    font-weight:bold;
+}
+/*價格*/
+.price{
+    text-decoration: none;
+    font-size: 15px;
+    color: gray;
+    font-weight:bold;
+    line-height: 3em;
+}
+/*加入購物車*/
+.add_to_cart{
+    padding:0px 10px;
+    text-decoration: none;
+    font-size: 15px;
+    background-color: #0066FF;
+    border-radius: 10px; /*邊界弧度*/
+    color: white;
+    font-weight:bold;
+    line-height: 2em;
+}
+/*滑鼠滑入加入購物車變色*/
+.add_to_cart:hover{
+    background-color:#DDDDDD;
+    color:  #666666;
+}
+
+/*測試不跑框*/
+#first{
+    margin: 0;
+    padding: 0;
+    list-style: none;      
+}
+#second{
+    margin: 0;
+    padding: 0;
+    list-style: none;      
+}
+
+
+/*整個商品分類頁*/
+.products-main{
+    text-align:justify;
+    padding:50px;
+    margin:auto;
+    position: relative;
+    text-align:center;
+}
+.products-main >ul{
+    margin:auto;
+    padding: 0;
+    text-align:center;
+}
+.products-main >ul li{
+    display:inline-block;
+}
+
+
+/*以下商品小分頁資訊*/
+.columns-3{
+    position: relative;
+    margin: auto;
+    margin-left: 14%;
+    padding: 0;
+    color:gray;
+}
+.product-ratails{
+    position: relative;
+    margin: auto;
+    padding: 0;
+    color:gray;
+}
+.product-details_photo{
+    margin-left: 330px;
+    float:left;
+}
+.product_entry-title{
+    
+    margin:auto;
+    padding-top: 40px;
+    padding-left: 0;
+    color: gray;
+    text-decoration:none;
+    font-size: 18px;
+    color:#444444;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.product_entry-title_name{
+    font-size: 18px;
+    color: gray;
+    font-weight: bold;
+    float: center;
+}   
+
+.product_entry-add_to_cart{
+     padding:10px 15px;
+    text-decoration: none;
+    font-size: 15px;
+    background-color: #0066FF;
+    border-radius: 10px; /*邊界弧度*/
+    color: white;
+    font-weight:bold;
+    line-height: 20px;
+}
+
+p{
+    color: gray;
+}
+
+.product-details_information{
+    margin:auto;
+    margin-top: 50px;
+    margin-left: 330px;
+    margin-bottom: 50px;
+    width: 650px;
+    padding:0;
+    line-height: 2em;
+}
